@@ -1,12 +1,18 @@
-import './App.css'
-import Homepage from './homepage.componrent'
+import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Homepage from './pages/homepage/home.component.jsx';
+import Shop from './pages/shop/shop.component.jsx';
 function App() {
-
   return (
-    <>
-    <Homepage/>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        
+        <Route path="/" element={<Homepage />} />
+        <Route path="/Shop" element={<Shop />} />
+
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
