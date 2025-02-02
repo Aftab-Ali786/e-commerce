@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleCartHidden } from '../../assets/Redux/Cart/cart.actions';
-import  ShoppingIcon  from '../../assets/shopping-bag.svg'; // Ensure this import works
+import ShoppingIcon from '../../assets/shopping-bag.svg'; // Ensure this path is correct
 import './cart-icon.styles.scss';
-import { Link } from 'react-router-dom'; // Import Link
+
 const CartIcon = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -13,11 +13,8 @@ const CartIcon = () => {
 
   return (
     <div className='cart-icon' onClick={() => dispatch(toggleCartHidden())}>
-      <Link>
-      <img src={ShoppingIcon} alt="" />
-      </Link>
+      <img src={ShoppingIcon} alt="Shopping Cart" className='shopping-icon' />
       <span className='item-count'>{itemCount}</span>
-      
     </div>
   );
 };
