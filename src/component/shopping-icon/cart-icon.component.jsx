@@ -1,22 +1,31 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { toggleCartHidden } from '../../assets/Redux/Cart/cart.actions';
-import ShoppingIcon from '../../assets/shopping-bag.svg'; // Ensure this path is correct
+import ShoppingIcon from '../../assets/shopping-bag.svg';
 import './cart-icon.styles.scss';
 
 const CartIcon = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
-  // Calculate total item count
-  const itemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  // Safer calculation with optional chaining
+  const itemCount = cartItems?.reduce((acc, item) => acc + item.quantity, 0) || 0;
 
   return (
-    <div className='cart-icon' onClick={() => dispatch(toggleCartHidden())}>
+    <div className='cart-icon' onClick={() => dispatch(toggleCartHidden())} role="button" tabIndex={0}>
       <img src={ShoppingIcon} alt="Shopping Cart" className='shopping-icon' />
-      <span className='item-count'>{itemCount}</span>
+      {itemCount > 0 && (
+        <span className='item-count' aria-hidden="true">
+          {itemCount}
+        </span>
+      )}
     </div>
   );
 };
 
-export default CartIcon;
+CartIcon.propTypes = {
+  // Add PropTypes if component receives any props in the future
+};
+
+export default React.memo(CartIcon); // Memoize for performance

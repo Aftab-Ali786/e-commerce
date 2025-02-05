@@ -37,4 +37,14 @@
       border: none;
     }
   }
+
+  &.google-sign-in {
+    background-color: #4285f4; // Google blue color
+    color: white;
+
+    &:hover {
+      background-color: #357ab8; // Darker blue on hover
+      border: none;
+    }
+  }
 }
