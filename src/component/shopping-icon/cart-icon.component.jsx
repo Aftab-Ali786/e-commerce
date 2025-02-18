@@ -1,10 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import { toggleCartHidden } from '../../assets/Redux/Cart/cart.actions';
 import ShoppingIcon from '../../assets/shopping-bag.svg';
 import './cart-icon.styles.scss';
-
 const CartIcon = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -24,8 +22,8 @@ const CartIcon = () => {
   );
 };
 
-CartIcon.propTypes = {
-  // Add PropTypes if component receives any props in the future
-};
+
+
+
 
 export default React.memo(CartIcon); // Memoize for performance

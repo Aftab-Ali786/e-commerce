@@ -9,6 +9,8 @@ import { auth, createUserProfileDocument } from "./component/Firebase/firebase.u
 import { Provider, useDispatch } from "react-redux";
 import store from "./assets/Redux/store";
 import { setCurrentUser } from "./assets/Redux/Users/user-action";
+import checkOut from "./component/checkout/checkOut.component";
+
 
 const AppContent = () => {
   const dispatch = useDispatch();
@@ -42,6 +44,7 @@ const AppContent = () => {
         <Route path="/" element={<Homepage />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/signin" element={<SignInAndSignUpPage />} />
+        <Route exact path="/checkout" Component={checkOut}/>
       </Routes>
     </>
   );
