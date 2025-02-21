@@ -7,10 +7,10 @@ import SignInAndSignUpPage from "./pages/signin-signup/sign-in-and-sign-up.compo
 import Header from "./component/header/header.component";
 import { auth, createUserProfileDocument } from "./component/Firebase/firebase.utils";
 import { Provider, useDispatch } from "react-redux";
-import store from "./assets/Redux/store";
+import { store, persistor } from "./assets/Redux/store";
 import { setCurrentUser } from "./assets/Redux/Users/user-action";
-import checkOut from "./component/checkout/checkOut.component";
-
+import CheckOut from "./component/checkout/checkOut.component"; // Corrected component name
+import { PersistGate } from "redux-persist/integration/react";
 
 const AppContent = () => {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ const AppContent = () => {
         <Route path="/" element={<Homepage />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/signin" element={<SignInAndSignUpPage />} />
-        <Route exact path="/checkout" Component={checkOut}/>
+        <Route path="/checkout" element={<CheckOut />} /> {/* Corrected prop and component name */}
       </Routes>
     </>
   );
@@ -53,7 +53,9 @@ const AppContent = () => {
 const App = () => (
   <Provider store={store}>
     <BrowserRouter>
-      <AppContent />
+      <PersistGate loading={null} persistor={persistor}> 
+        <AppContent />
+      </PersistGate>
     </BrowserRouter>
   </Provider>
 );
