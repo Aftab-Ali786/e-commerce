@@ -1,28 +1,19 @@
 import React from "react";
+import { Route, Routes, useMatch } from "react-router-dom";
+import CollectionOverviewComponent from "../../component/collection-overview/collection-overview.component";
+import CatagoryPage from "../catagory/caytagory.component";
 
-import SHOP_DATA from "./shop.data";
-import CollectionPreview from "../../component/collection-preview/collection-preview.component";
- 
-class Shop extends React.Component{
-    constructor(props){
-        super(props)
- this.state ={
-        Collection:SHOP_DATA
-    };
-}
+const ShopPage = () => {
+  const match = useMatch("/shop/*"); // Use the base path for the shop page
 
-render(){
-  
-    const {Collection} = this.state;
-    return (<div className="shop-page">
-        {
-            Collection.map(({id, ...otherCollectionProps})=>(
-                <CollectionPreview key={id} {...otherCollectionProps} />
-            ))
-        }
-            
-        </div> 
-    )
-}
-}
-export default Shop
+  return (
+    <div className="shop-page">
+      <Routes>
+        <Route path="/" element={<CollectionOverviewComponent />} />
+        <Route path=":categoryId" element={<CatagoryPage />} />
+      </Routes>
+    </div>
+  );
+};
+
+export default ShopPage;

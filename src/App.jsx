@@ -42,7 +42,7 @@ const AppContent = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/*" element={<Shop />} />
         <Route path="/signin" element={<SignInAndSignUpPage />} />
         <Route path="/checkout" element={<CheckOut />} /> {/* Corrected prop and component name */}
       </Routes>
