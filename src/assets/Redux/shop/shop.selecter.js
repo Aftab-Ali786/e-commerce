@@ -18,7 +18,7 @@ export const selectShopItems = createSelector(
 
 export const selectShopItemsForPreview = createSelector(
   [selectShopItems],
-  collections=>Object.keys(collections).map(key=>collections(key))
+  collections => Object.keys(collections).map(key => collections[key])
 )
 // Selector to get a specific collection by URL parameter
 export const selectCollectionByUrlParam = (collectionUrlParam) =>
